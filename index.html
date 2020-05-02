@@ -1,0 +1,89 @@
+
+<html>
+    <head>
+        <link rel="icon" type="image/png" href="https://images.emojiterra.com/twitter/v12/512px/1f37b.png" />
+        <title>aimeric's bar</title>
+        <style>
+            .hiddermaster {
+                display: none;
+            }
+            
+        </style>
+    </head>
+    <body>
+
+<div class="loadingpage">
+    <iframe width="103%" height="100%" src="./loadingpage.html"></iframe>
+</div>
+
+
+<div class="mainpage hiddermaster">
+    <iframe width="103%" height="100%" src="./mainpage.html"></iframe>
+</div>
+
+<script src="js/jquery.js"></script>
+<script id="rendered-js">
+function hiddermain()
+{
+setTimeout(hidderinit, 4000) 
+
+}
+function hidderinit()
+{
+    $('.loadingpage').addClass("hiddermaster");
+    $('.mainpage').removeClass("hiddermaster");
+}
+hiddermain()
+
+        </script>
+            <script id="rendered-js">
+$(document).ready(function(){
+	$('body').pointer();
+});
+
+(function($){
+	$.fn.pointer = function (options) {
+		var settings = {
+			size : 80,
+			spd : 300,
+			color : "#a00"
+		}
+		settings = $.extend(settings, options);
+		
+		var circle_style = {
+			"position":"absolute",
+			"z-index":9999,
+			"height":10,
+			"width":10,
+			"border":"solid 4px "+settings.color,
+			"border-radius":settings.size
+		}
+		return this.each(function() {
+			var $this = $(this);
+			$this.css({"position":"relative"});
+			$(document).click(function(e){
+				var x = e.pageX-5;
+				var y = e.pageY-5;
+				
+				var pos = {
+					top :(-settings.size/2)+y,
+					left :(-settings.size/2)+x
+				}
+		
+				$this.append('<div class="circle"></div>');
+				$this.find(".circle:last").css(circle_style).css({
+					"top":y,
+					"left":x
+				}).animate({"height":settings.size,"width":settings.size,"left":pos.left,"top":pos.top},{duration:settings.spd,queue:false})
+				.fadeOut(settings.spd*1.8,function(){
+					$(this).remove();
+				});
+			});
+		});
+	}
+})(jQuery); 
+  //# sourceURL=pen.js
+      </script>
+
+</body>
+</html>
